@@ -1,57 +1,52 @@
-################  laboratorio 1 ############################
-## Curso: Laboratorio de R y Python ###########################
-## @author: Roberto Mendoza 
-
 " Laboratorio 1 Python"
 
-## ---------------------------------------------------------------------
+#Atajos:
+   "Codigo a texto = Crtl + Shift + C"
 
-"Types of variables"
 
-# "Codigo a texto" = Crtl + Shift + C
+#1. Tipos de variables:
 
-a2 <- 3.1614
+a2 <- 3.1614   # a2 = 3.1614  numero con decimales
 print(a2)
 typeof(a2)
 class(a2)
 
-a2 <- as.integer(a2)
+a2 <- as.integer(a2)    # a2 = 3  entero de numero decimal
+a2
 typeof(a2)
 class(a2)
 
-b1 <- 10000
-typeof(b1)
 
-" ######## string  #############"
-
-c1 <- "My first python code"
+c1 <- "My first python code"      #variables string
 print(c1)
 typeof(c1)
 class(c1)
 
+
+## 1. Incluir espacios entre x1 y x2 string
+      #2. continuidad en línea   cat(x1, " : ", x2)
 c1 <- "First python code"
 c2 <- 'at R y python Class'
 cat(c1," : ",c2)
 
-
+      #3. continuidad en línea   paste0(x1, " palabras ", x2)
 a <- paste0(c1,' : semester 2022-1')
 print(a)
 
-d <- 2022
-paste0(c1,' : semester ',d, '-1')
+dato <- 2022
+paste0(c1,' : semester ',dato, '-1')
 
 
-#first character
+## 2. Sustraer de string  ==>    substr(string, n1,n2)
 
-cat('Fisrt letter is :', substr(c1, 1,1)  )
+    # n1 = donde empieza extracción
+    # n2 = cuanto se extrae
 
-#first word
-cat('Fisrt word is :', substr(c1, 1,5)  )
+cat('Sustraer la segunda letra de string c1 :', substr(c1, 2,1)  )   
+
+cat('Sustrar la palabra del string (5 primeras letras) :', substr(c1, 1,5)  )
 
 
-"cat just contatenate characters to print"
-
-## ---------------------------------------------------------------------
 
 "2.0 Logical variables"
 
