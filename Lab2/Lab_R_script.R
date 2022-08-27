@@ -456,11 +456,11 @@ x3 <- runif(500)
 x4 <- runif(500)
 e <- rnorm(500)
 
-#Isntrumento 
+#Instrumento
 
 z <- rnorm(500)
 
-# Poblacional regression (Data Generating Process GDP)
+# Probational regression (Data Generating Process GDP)
 
 Y <- 1 + 0.8*x1 + 1.2*x2 + 0.5*x3 + 1.5*x4 + e
 X <- cbind(matrix(1,500), x1,x2,x3,x4)
@@ -474,7 +474,7 @@ ols <- function(M, Y , standar = T, Pvalue = T , instrumento = NULL, index = NUL
     
     y_est <- M %*% beta
     n <- dim(M)[1]  # filas
-    k <- dim(M)[2] - 1  # varaibles sin contar el intercepto}
+    k <- dim(M)[2] - 1  # variables sin contar el intercepto}
     df <- n- k
     sigma <- sum(sapply(Y - y_est , function(x) x ^ 2))/ df 
     

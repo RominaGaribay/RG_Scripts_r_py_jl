@@ -8,6 +8,8 @@
 
 "Types of variables"
 
+# "Codigo a texto" = Crtl + Shift + C
+
 a2 <- 3.1614
 print(a2)
 typeof(a2)
@@ -83,7 +85,7 @@ typeof(z3)
 
 " 3.1 c() Atomic vector: simple vector data"
 
-a <- c(1,2,3,4,"Perú")
+a <- c(1,2,3,4,"Perú")  "Ver elemento de vector"
 print(a)
 class(a)
 typeof(a[1])
@@ -91,13 +93,16 @@ typeof(a[1])
 c2 <- c("Red", "Green", "Purple")
 print(c2)
 
-
+# Agregar valor a lista 
 a <- c(1,2,3,4)
+a
 a <- append(a, 5)
+a
 
 " 3.2 rep( number, times) "
 
-b <-  rep(2,3) # repeat 2, 3 times 
+b <-  rep(2,3) # repetir 2, 3 veces 
+b
 append(a,b)
 
 print(mean(a))
@@ -108,7 +113,8 @@ rep("blue", 3)
 length( rep(sample(1:100, size = 10), 3) )
 
 
-" 3.3 seq(from , to ,by ) "
+" 3.3 seq(from , to ,by ) " 
+# secuencia de valores con intervalo
 
 y <- seq(from = 0, to = 19, by = 2)
 
@@ -136,10 +142,15 @@ seq(100,1000, length.out = 50)
 
 
 "3.4 Split vector"
-
+#partir base en 3 grupos
 indices <- split(seq(100), sort( seq(100) %% 3 ) )
+indices
+
+#colocar nombra a cada parte, los 3 grupos
 names(indices) <- c('training', 'est', 'test') ## add labels 
 print(indices)
+
+#llamar al grupo 'est
 indices$est
 
 attributes(indices) # atributos 
@@ -258,7 +269,7 @@ append(num, num2)
 cat("Suma:", sum(unlist(num)),'\n', "Minimo:", min(unlist(num)), '\n', "Maximo:", max(unlist(num)))
 
 list1 <- list(100:130, "R", list(TRUE, FALSE))
-
+ 
 ## ---------------------------------------------------------------------
 
 ### 3.0 OLS
@@ -266,7 +277,7 @@ list1 <- list(100:130, "R", list(TRUE, FALSE))
 set.seed(756)
 
 
-x1 <- runif(500)
+x1 <- runif(500)  # 500 numeros uniformes de una distribucion 0 a 1
 x2 <- runif(500)
 x3 <- runif(500)
 x4 <- runif(500)
@@ -275,11 +286,13 @@ e <- rnorm(500)
 # Poblacional regression (Data Generating Process GDP)
 
 Y <- 1 + 0.8*x1 + 1.2*x2 + 0.5*x3 + 1.5*x4 + e
+Y
 
 
 #M1 <- matrix(0,8,2)
 
 X <- cbind(matrix(1,500), x1,x2,x3,x4)
+X
 head(X)
 
 #inv(X) or solve (X)
