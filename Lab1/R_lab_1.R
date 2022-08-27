@@ -4,8 +4,9 @@
    "Codigo a texto = Crtl + Shift + C"
 
 
-#1. Tipos de variables:
+##0. Tipos de variables:
 
+   
 a2 <- 3.1614   # a2 = 3.1614  numero con decimales
 print(a2)
 typeof(a2)
@@ -24,6 +25,8 @@ class(c1)
 
 
 ## 1. Incluir espacios entre x1 y x2 string
+
+
       #2. continuidad en línea   cat(x1, " : ", x2)
 c1 <- "First python code"
 c2 <- 'at R y python Class'
@@ -39,6 +42,7 @@ paste0(c1,' : semester ',dato, '-1')
 
 ## 2. Sustraer de string  ==>    substr(string, n1,n2)
 
+
     # n1 = donde empieza extracción
     # n2 = cuanto se extrae
 
@@ -47,15 +51,15 @@ cat('Sustraer la segunda letra de string c1 :', substr(c1, 2,1)  )
 cat('Sustrar la palabra del string (5 primeras letras) :', substr(c1, 1,5)  )
 
 
+##3. Logical variables: Por default sale True/False con as.interger(x1)  o as.numeric se convierte a 1/0
 
-"2.0 Logical variables"
 
-a == a
-
+a == a   
 1 == 1
 
-z1 <- (1==1)
+z1 <- (1==1)    # z1 <- (True)
 typeof(z1)
+print(z1)
 
 z1 <- as.integer(z1)
 print(z1)
@@ -66,21 +70,19 @@ as.integer(z2)
 
 z3 <- (100 != 100)
 z3 <- as.numeric(z3)
-typeof(z3)
+print(z3)
 
 
-"TRUE <> T , FALSE <> F"
+### ARRAY O MATRICES
 
 
-## ---------------------------------------------------------------------
+# 3. 1_DIMENSION numeric array
 
-### 3.0 Array and Matrices
+    # a. CREAR VECTOR
+        " 3.1 c() Atomic vector: simple vector data" 
+        # Elementos de vector pueden ser numeros o strings
 
-# 1D numeric array
-
-" 3.1 c() Atomic vector: simple vector data"
-
-a <- c(1,2,3,4,"Perú")  "Ver elemento de vector"
+a <- c(1,2,3,4,"Perú")     
 print(a)
 class(a)
 typeof(a[1])
@@ -88,71 +90,71 @@ typeof(a[1])
 c2 <- c("Red", "Green", "Purple")
 print(c2)
 
-# Agregar valor a lista 
-a <- c(1,2,3,4)
-a
-a <- append(a, 5)
-a
+  # Repetir valores:   rep( number, times)
 
-" 3.2 rep( number, times) "
-
-b <-  rep(2,3) # repetir 2, 3 veces 
+b <-  rep(2,3) 
 b
+
+  # b. AGREGAR VALOR A LA LISTA:
+        #append(lista_original, valor a agregar)
+
+        #b.1 agregar numero
+a <- c(1,2,3,4)
+a <- append(a, 100)
+a
+
+        #b.2 agregar lista
 append(a,b)
 
+
+  # c. Operaciones aritmeticas
 print(mean(a))
 print(sd(a))
 
-rep("blue", 3)
+#  g. Extraer valor de lista   lista[indice de extraccion]
+a[5]
 
+  # d.CREAR LISTA ALEATORIA   sample(n1:n2, size = n) lista de valores entre n1-n2 con n valores
+sample(1:100, size = 10)
+
+
+  #  e. Tamaño de lista     length(lista)
 length( rep(sample(1:100, size = 10), 3) )
 
 
-" 3.3 seq(from , to ,by ) " 
-# secuencia de valores con intervalo
-
+  #  f. Secuencia de valores con intervalo    
+#f.1                seq(from , to ,by ) default es 1
 y <- seq(from = 0, to = 19, by = 2)
-
 y <- seq(0, 19, 2)
-
-print(y)
-typeof(y)
-
-y[1]
-
-# second example 
-
-y <- seq( 1, 10)
 print(y)
 
-# Consecutives numbers
-
-seq(100)
-1:100
+#f.2                en números consecutivos
+seq(10)
+1:10
 seq_len(10)
 
-# split sequence in 50 parts
-
+#f.2                numeros random entre n1 y n2, total = length=out
 seq(100,1000, length.out = 50)
+  
 
+######  "3.4 Split vector"
 
-"3.4 Split vector"
-#partir base en 3 grupos
+#1.  partir base en 3 grupos
 indices <- split(seq(100), sort( seq(100) %% 3 ) )
 indices
 
-#colocar nombra a cada parte, los 3 grupos
-names(indices) <- c('training', 'est', 'test') ## add labels 
-print(indices)
+#2. colocar nombra a cada parte, los 3 grupos      names(lista_sub) <- c(name1, name2, name3)
+names(indices) <- c('training', 'est', 'test') 
+print(indices)  #salen los numeros
 
-#llamar al grupo 'est
-indices$est
+#3. llamar al grupo 'est'=name2
+indices$est   #salen los numeros
 
-attributes(indices) # atributos 
+#4. llamar al nombre de los grupos
+attributes(indices) #salen los nombres
 
-"attribute : información de cualquier objeto en R"
 
-" 3.5 Array: genera vectores multidimensionales R^n "
+##### 3.5 Array: genera vectores multidimensionales R^n
 
 ar <- array(c(11:14, 21:24, 31:34), dim = c(2, 2, 3))
 print(ar)
