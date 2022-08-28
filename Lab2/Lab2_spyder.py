@@ -4,27 +4,27 @@ Created on Wed Aug 24 22:17:21 2022
 
 @author: Roberto
 """
+
+#%% Intro 
+
+#### Itntro 2.0 
+
 #%% If statement
 
 """
 If statement
 
 """
-#se usa Fn + F9
 
 import random
 import numpy as np
 import math
 
 y = np.random.randint(-10, 10, 10)
-y
-
-y = np.random.randint(0, 500,10)
-y
 
 if np.mean(y) >0 :
     
-    dummy = 1
+    dummy = 1   #tab arriba del botom mayuscula 
     
 else :
     dummy = 0
@@ -36,13 +36,14 @@ Nested If statement
 
 """
 
-# v = 2
-v = np.nan  #"missing"
+v = 2  # Ctrl 1
+
+# v = np.nan  # missing 
 # v = "String"
 # v = False
 
 
-if isinstance( v, int ):   #evalua si es numero missing
+if isinstance( v, int ):
     print(v, " es numero entero (no missing)")
 elif math.isnan(v):
     print(v, " es un missing")
@@ -51,7 +52,9 @@ elif isinstance( v, str ):
 elif isinstance( v, bool ):
     print(v, " es un logical")     
 else:
-    print("Sin resultado")        
+    print("Sin resultado")  
+      
+    
 #%% While Loop
 
 ### If I have my savings today of S/.1,000.00. How much will my savings be worth
@@ -59,7 +62,7 @@ else:
 
 "     S_{y+1}	=S_{y}(1+i) "
 
-#  save
+#  sasve
 S = 1000
 
 # Periods
@@ -73,7 +76,7 @@ year = 1
 
 while year < n:
     S =  S * (1+i)
-    year += 1
+    year += 1 # sumo un unidad
     print( year, S)
     
  
@@ -98,21 +101,17 @@ print(w)
 
 #### For Loop
 
-    #ejemplo de suma de edades:
-
 ages = np.array([21, 23, 25, 24, 20])
 
-for age in ages: # en cada iteracion toma valor
+for age in ages:
 
-  print(age+10 )  
+    print(age+10 )  
   
 #### For and Next, break 
 
 # Example 1
-
-
-for i in range(50):   # lista de 1 hasta 50
-    if i in range(15,21) :   # si esta entre 15 y 21 no aparece nada
+for i in range(50):
+    if i in range(15,21) :
         None
     else :
         print("Ejecutanto",i,"\n")
@@ -139,11 +138,7 @@ while True :
         print(w)
     
 
-#%%  Funciones
-
-
-# def funcion(x1,x2,x3):
-    # resultado
+#%%  Function 
 
 def calculator(x,y,z):
     result = x*y*z
@@ -152,7 +147,7 @@ def calculator(x,y,z):
 
 print( calculator( 158, 38, 10 ) )
 
-calculator( 1,2,3)
+calculator( 158, 38)
 
 
 ## return multiple
@@ -166,7 +161,7 @@ def calculator_square( x, y ):
     
     return result, x2, f"La multiplicación del cuadrado es: {result}"
 
-calculator_square(3, 4)
+calculator_square(3, 4) 
                   
 print( calculator_square(3, 4)[1] )
 calculator_square(3, 4)[2]
@@ -198,7 +193,7 @@ def calculator_base_5( x , y = 5 ):
 
 calculator_base_5( 7 )
 
-#definir variable entre int y float
+
 
 def calculator_base_5( x : int, y : float ) -> float:
     
@@ -241,7 +236,9 @@ def transpose(M, est = True, z = None):
         
         M = M*z 
         return M
-        
+  
+
+      
 A = np.array([np.arange(0,10), np.arange(10,20), np.arange(30,40), np.arange(-20,-10), np.arange(2,21,2)])
 
 print(transpose(A))
@@ -488,9 +485,9 @@ df['nueva_var'] = df['v2'].swifter.apply(lambda x : x**99) # parallel procesing
 #%% OLS
 
 from scipy.stats import t # t - student 
+import pandas as pd 
 
-
-random.seed(175)
+np.random.seed(175)
 
 x1 = np.random.rand(500) # uniform distribution  [0,1]
 x2 = np.random.rand(500) # uniform distribution [0,1]
@@ -504,10 +501,6 @@ z = np.random.rand(500)
 Y = 1 + 0.8*x1 + 1.2*x2 + 0.5*x3 + 1.5*x4 + e
 
 X = np.column_stack((np.ones(500),x1,x2,x3,x4))
-
-#standar = error standar de beta estimado
-
-import pandas as pd
 
 def ols(M,Y, standar = True, Pvalue = True , instrumento = None, index = None):
 
@@ -525,8 +518,8 @@ def ols(M,Y, standar = True, Pvalue = True , instrumento = None, index = None):
          t_est = np.absolute(beta/sd)
          pvalue = (1 - t.cdf(t_est, df=nk) ) * 2
          df = pd.DataFrame( {"OLS": beta , "standar_error" : sd ,
-                             "Pvalue" : pvalue})    #bota resultado como data frame
-
+                             "Pvalue" : pvalue} )    
+         
     
     elif (not instrumento is None) and (not index is None) :
         
@@ -547,7 +540,7 @@ def ols(M,Y, standar = True, Pvalue = True , instrumento = None, index = None):
 
 ols(X,Y)
 
-ols(X,Y,instrumento = z, index = 1)  #cual de x endog es en x1
+ols(X,Y,instrumento = z, index = 2)
 
 
 

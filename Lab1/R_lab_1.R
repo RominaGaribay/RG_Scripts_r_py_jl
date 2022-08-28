@@ -154,63 +154,71 @@ indices$est   #salen los numeros
 attributes(indices) #salen los nombres
 
 
-##### 3.5 Array: genera vectores multidimensionales R^n
+##### 3.5 Array: genera vectores multidimensional R^n
 
+    #  array(lista, dim(x,yz))   => x= filas, y=columnas, z= numeros de matrices
 ar <- array(c(11:14, 21:24, 31:34), dim = c(2, 2, 3))
 print(ar)
-typeof(ar)  # tipo de elementos
-class(ar)   # tipo de estrucutura del objeto
+typeof(ar)  # type of elements
+class(ar)   # type de structure of the object
 
 
-
-# array 1-dim vector 
-
+    # 1D
 a <- array(1:20)
 n <- length(a)
 
-print(sd(a)*sqrt((n-1)/n))  # take care standar deviation formula
+print(sd(a)*sqrt((n-1)/n))  # deviation standard
 
-# 2D array numeric
+    # 2D 
 
-M <- matrix(c(1,2,3,4,5,6), nrow = 2, byrow =TRUE)
+#M <- matrix(data, numero de filas _ , numeros de columnas | , byrow = FALSE llenada por columnas → )
 
+M <- matrix(c(1,2,3,4,5,6), nrow = 2, byrow = TRUE)    " llenado para →"
 print(M)
-typeof(M)
 dim(M)
 
-# Matrix by colum
+Mfilas <- matrix(c(1,2,3,4,5,6), nrow = 2, byrow = FALSE)    "llenado para ↓"
+print(Mfilas)
 
-M <- matrix(c(1,2,3,4,5,6), nrow = 2, byrow =FALSE)
-print(M)
-
-cat("rows: ", dim(M)[1], '\n', "Columns: ", dim(M)[2])
-
-dim(M)[1]
-
-# Create a 1D NumPy array with values from 0 to 20 (exclusively) incremented by 2.5:
+    #Dimension de matriz contabilizar 
+dim(M)
+dim(M)[1]    #filas = 1 
+dim(M)[2]    #columnas = 2
+cat(" Rows   : ", dim(M)[1], '\n', "Columns: ", dim(M)[2])
 
 
-" 3.6 Matrix "
 
+#### " 3.6 Matrix "
+
+#Construir
 A <- matrix(c(seq(0, 9), seq( 10, 19), seq( 30, 39), seq( -20, -11), seq( 2, 20,2)), nrow = 5, byrow =TRUE)
 A
 
-A[2:4,] # rows selecrtion
 
-A[,1:6]  # columns selecrtion
+#b. Sacar filas
+A[2:4,] # rows selection
 
-A[,-c(2,3)] # drop columns 
+#c. Sacar columnas
+A[,1:6]  # columns selection
 
-# Join matrix and special Matrix
+#l. drop columns : indicar las columnas a eliminar
+
+A[,-c(2,3)] 
+
+
+#d. Matriz de ceros  matrix(0, filas, columnas)
 
 M1 <- matrix(0,8,2)
-
 print(M1)
 
+
+#d. Matriz de unos  matrix(1, filas, columnas)
 M2 <- matrix(1,8, 4) 
 print(M2)
 
-# horizontal stack 
+
+#e. Juntar matrices 
+    # horizontal stack  M1 + M2   cbind(M1,M2)
 
 M3 <- cbind(M1,M2)
 M3
@@ -218,93 +226,108 @@ M3
 M4 = matrix(c(2,2,3,4,5,1,1,5,5,9,8,2), nrow =2, byrow = TRUE)
 print(M4)
 
-# vertical stack 
+    # vertical stack    M1 +      rbind(M1,M2)
+    #                   M2
 
 M5 <- rbind(M3,M4)
-
 M5
 
-## trasnpose
-
+#f. transponer
 t(M5)
 
-# Matrix Identity
+
+# e. Matrix Identity  (1 0 0 0 , 1 0 0...)
 
 I <- diag(8)
-print(I)
+I
 
-# Reshape
-I3 <- matrix(I, nrow = 32, ncol = 2)
+#g. Re forma : dar otro tamaño a la matriz
+I     #  8 x 8
+I3 <- matrix(I, nrow = 32, ncol = 2)    # matrix(I,32,2) que sean (filas, columnas) 32 f y 2 colu
 print(I3)
 typeof(I3)
+
+
 
 "3.7 Factor"
 
 university <- factor( c( rep("Licenciada",10), rep("No licenciada",100) ) )
+university
 attributes(university)
+
+    #ejemplo internet:
+x1 <- c("Dic", "Abr", "Ene", "Mar")
+x2 <- c("Dic", "Abr", "Eme", "Mar")
+niveles_meses <- c(  "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic")
+factor(x1, levels = niveles_meses)  #todos los valores son corretos
+factor(x2, levels = niveles_meses)  #NA
 
 
 " 3. 8 List"
+#NOta, La lista puede contener datos diferentes como numéricos, caracteres, etc. 
+#PERO Vector almacena elementos del mismo tipo o los convierte implícitamente:
+
+list1 <- list(100:130, "R", list(TRUE, FALSE))
+list1
+unlist(list1)
 
 dis2 <- list('ATE', 'BARRANCO','BREÑA', 'CALLAO', 'CARABAYLLO','CHACLACAYO','CHORRILLOS','CIENEGUILLA'
              ,'COMAS','EL_AGUSTINO','INDEPENDENCIA')
-dis2[[1]] # get element
 
+  #a. Obtener elemento de lista
+      dis2[[1]]    # dis[[posicion]]
 
-dis1[2:5]
+      dis2[2:5]
 
-dis1[-1] # drop first element
+      dis2[-1]      # ultimo elemento
 
-# add new element
+  #b. Agregar elemento a lista
 num <- list(13,5,5,8,9,10,5,8,13,1,20)
-append(num, 102)
-# add a list 
+append(num, 102)   #agregar numero a lista
+
 num2 <- list(10,20,30)
-append(num, num2)
+append(num, num2)  #agregar lista a lista
 
 
+  #Operaciones arimeticas: tiene que dejar de ser lista =>  unlist(lista)
 cat("Suma:", sum(unlist(num)),'\n', "Minimo:", min(unlist(num)), '\n', "Maximo:", max(unlist(num)))
 
-list1 <- list(100:130, "R", list(TRUE, FALSE))
- 
+
 ## ---------------------------------------------------------------------
 
 ### 3.0 OLS
 
+## ---------------------------------------------------------------------
 set.seed(756)
 
-
-x1 <- runif(500)  # 500 numeros uniformes de una distribucion 0 a 1
+  #1. runif(N) : N Numeros aleatorios de distribucion uniforme rango [0,1]
+x1 <- runif(500)  
 x2 <- runif(500)
 x3 <- runif(500)
 x4 <- runif(500)
+
+  #2. rnorm(N) : N Numeros aleatorios de distribucion normal de media=0 y var=1 
 e <- rnorm(500)
 
-# Poblacional regression (Data Generating Process GDP)
 
+
+
+  #4. Vector de Valores de Y para n observaciones
+# Poblacional regression (Data Generating Process GDP)
 Y <- 1 + 0.8*x1 + 1.2*x2 + 0.5*x3 + 1.5*x4 + e
 Y
 
-
-#M1 <- matrix(0,8,2)
-
+  #5. Juntar vectors de 1(n) + x1 +x2...+x4
 X <- cbind(matrix(1,500), x1,x2,x3,x4)
 X
 head(X)
 
-#inv(X) or solve (X)
+  #6. Construir beta:
 
 beta <- solve(t(X) %*% X) %*% (t(X) %*% Y)
+#
+  #   beta    =  (X'X) -1 (X' y)
+  #   (X'X)    =  t(X) %*% X                donde %*% multiplica matrices
+  #   (X'X) -1 =  inv(Matrix) or solve (matrix)
+  #   (X' y)   =  (t(X) %*% Y)
 beta
-
-
-## Probabilities from Distributions 
-
-
-
-
-
-
-
-
-
